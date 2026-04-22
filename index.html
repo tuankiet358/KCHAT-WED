@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCHAT - Chat Trực Tuyến Như Discord</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>👋 Chào mừng đến KCHAT!</h2>
+            <p>Nhập tên của bạn để bắt đầu chat</p>
+            <input type="text" id="usernameInput" placeholder="Tên của bạn..." maxlength="20">
+            <div class="color-picker">
+                <label>Màu avatar:</label>
+                <input type="color" id="avatarColor" value="#5865f2">
+            </div>
+            <button id="joinBtn">Tham gia Chat</button>
+        </div>
+    </div>
+
+    <div class="app" id="app" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="server-list">
+                <div class="server-item active">
+                    🏠
+                </div>
+            </div>
+            <div class="channel-list">
+                <div class="channel-category">TEXT CHANNELS</div>
+                <div class="channel-item active" data-channel="general">
+                    <span class="channel-icon">#</span>
+                    <span>general</span>
+                    <span class="channel-users" id="generalUsers">0 online</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat -->
+        <div class="main-chat">
+            <div class="chat-header">
+                <div class="channel-name"># general • <span id="onlineCount">0</span> online</div>
+                <div class="header-right">
+                    <span id="typingIndicator"></span>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="messages">
+                <div class="welcome-message">
+                    <div>Đang kết nối...</div>
+                </div>
+            </div>
+            
+            <div class="message-input-area">
+                <div class="message-input-container">
+                    <div class="input-wrapper">
+                        <textarea 
+                            class="message-input" 
+                            id="messageInput" 
+                            placeholder="Nhập tin nhắn... (Ctrl+Enter)"
+                            rows="1"
+                        ></textarea>
+                        <div id="typingIndicatorInput" class="typing-dots"></div>
+                    </div>
+                    <button class="send-button" id="sendButton">➤</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Panel -->
+        <div class="user-panel">
+            <div class="user-profile">
+                <div class="user-avatar" id="currentUserAvatar">K</div>
+                <div class="user-info">
+                    <h3 id="currentUsername">Khách</h3>
+                    <div class="user-status">
+                        <div class="status-indicator"></div>
+                        <span id="currentStatus">Online</span>
+                    </div>
+                </div>
+            </div>
+            <div class="online-users">
+                <div class="users-title">ONLINE — <span id="totalOnline">0</span></div>
+                <div id="userList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
